@@ -72,7 +72,7 @@ function StudentLogin() {
 
     if (mode === "forgot") {
       const { error: err } = await client.auth.resetPasswordForEmail(email, {
-        redirectTo: `${window.location.origin}/reset-password?space=talameed`,
+        redirectTo: "https://madauros.vercel.app/reset-password?space=talameed",
       });
       if (err) setError(translateError(err.message));
       else setMessage("إذا كان هذا البريد مسجّلاً، فقد أرسلنا إليه رابطاً لإعادة تعيين كلمة المرور.");
@@ -81,7 +81,7 @@ function StudentLogin() {
         email,
         password,
         options: {
-          emailRedirectTo: `${window.location.origin}/`,
+          emailRedirectTo: "https://madauros.vercel.app/",
           data: { space: "talameed" },
         },
       });
