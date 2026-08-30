@@ -76,7 +76,7 @@ export function SpaceAuth({ space, children }: Props) {
     setMessage(null);
     if (mode === "forgot") {
       const { error: err } = await client.auth.resetPasswordForEmail(email, {
-        redirectTo: `${window.location.origin}/reset-password?space=${space}`,
+        redirectTo: `${https://madauros.vercel.app}/reset-password?space=${space}`,
       });
       if (err) setError(translateError(err.message));
       else setMessage("إذا كان هذا البريد مسجّلاً، فقد أرسلنا إليه رابطاً لإعادة تعيين كلمة المرور.");
@@ -85,7 +85,7 @@ export function SpaceAuth({ space, children }: Props) {
         email,
         password,
         options: {
-          emailRedirectTo: `${window.location.origin}/`,
+          emailRedirectTo: `${https://madauros.vercel.app}/`,
           data: { space },
         },
       });
