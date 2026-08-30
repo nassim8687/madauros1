@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
-import { getSpaceClient, SPACES } from "@/lib/spaces";
+import { APP_ORIGIN, getSpaceClient, SPACES } from "@/lib/spaces";
 import { translateError, Wordmark } from "@/components/SpaceAuth";
 import { MainNav } from "@/components/MainNav";
 import { PasswordField } from "@/components/PasswordField";
@@ -72,7 +72,7 @@ function StudentLogin() {
 
     if (mode === "forgot") {
       const { error: err } = await client.auth.resetPasswordForEmail(email, {
-        redirectTo: "https://madauros.vercel.app/reset-password?space=talameed",
+        redirectTo: `${APP_ORIGIN}/reset-password?space=talameed`,
       });
       if (err) setError(translateError(err.message));
       else setMessage("إذا كان هذا البريد مسجّلاً، فقد أرسلنا إليه رابطاً لإعادة تعيين كلمة المرور.");
@@ -81,7 +81,7 @@ function StudentLogin() {
         email,
         password,
         options: {
-          emailRedirectTo: "https://madauros.vercel.app/",
+          emailRedirectTo: `${APP_ORIGIN}/`,
           data: { space: "talameed" },
         },
       });

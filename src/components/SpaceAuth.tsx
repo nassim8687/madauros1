@@ -1,7 +1,7 @@
 import { useEffect, useState, type ReactNode } from "react";
 import type { Session, SupabaseClient } from "@supabase/supabase-js";
 import type { Database } from "@/integrations/supabase/types";
-import { getSpaceClient, SPACES, STATUS_LABEL, type SpaceKey } from "@/lib/spaces";
+import { APP_ORIGIN, getSpaceClient, SPACES, STATUS_LABEL, type SpaceKey } from "@/lib/spaces";
 import { MainNav } from "@/components/MainNav";
 import { PasswordField } from "@/components/PasswordField";
 import { PublicBackdrop } from "@/components/PublicBackdrop";
@@ -76,7 +76,7 @@ export function SpaceAuth({ space, children }: Props) {
     setMessage(null);
     if (mode === "forgot") {
       const { error: err } = await client.auth.resetPasswordForEmail(email, {
-        redirectTo: "https://madauros.vercel.app/reset-password?space=" + space,
+        redirectTo: `${APP_ORIGIN}/reset-password?space=` + space,
       });
       if (err) setError(translateError(err.message));
       else setMessage("إذا كان هذا البريد مسجّلاً، فقد أرسلنا إليه رابطاً لإعادة تعيين كلمة المرور.");
@@ -85,7 +85,7 @@ export function SpaceAuth({ space, children }: Props) {
         email,
         password,
         options: {
-          emailRedirectTo: "https://madauros.vercel.app/",
+          emailRedirectTo: `${APP_ORIGIN}/`,
           data: { space },
         },
       });
