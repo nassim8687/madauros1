@@ -77,3 +77,15 @@ export const SPACE_LABEL: Record<SpaceKey, string> = {
   taleem: "أستاذ",
   admin: "إداري",
 };
+
+/**
+ * Origin to use for Supabase auth email redirects (confirmation + password reset).
+ * Prefers the current browser origin (so the Lovable preview/published link works),
+ * and falls back to the canonical Vercel domain when there is no window (SSR) or
+ * the origin cannot be determined. Both domains must be listed as allowed redirect
+ * URLs in the Supabase Auth settings.
+ */
+export const APP_ORIGIN =
+  typeof window !== "undefined" && window.location?.origin
+    ? window.location.origin
+    : "https://madauros.vercel.app";
