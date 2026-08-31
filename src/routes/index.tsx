@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
-import { APP_ORIGIN, getSpaceClient, SPACES } from "@/lib/spaces";
+import { APP_ORIGIN, consumeAuthRedirect, getSpaceClient, SPACES } from "@/lib/spaces";
 import { translateError, Wordmark } from "@/components/SpaceAuth";
 import { MainNav } from "@/components/MainNav";
 import { PasswordField } from "@/components/PasswordField";
