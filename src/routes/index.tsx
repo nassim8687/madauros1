@@ -59,9 +59,11 @@ function StudentLogin() {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    client.auth.getSession().then(({ data }) => {
-      if (data.session) navigate({ to: "/talameed" });
-    });
+    consumeAuthRedirect(client).then(() =>
+      client.auth.getSession().then(({ data }) => {
+        if (data.session) navigate({ to: "/talameed" });
+      }),
+    );
   }, [client, navigate]);
 
   const submit = async (e: React.FormEvent) => {
