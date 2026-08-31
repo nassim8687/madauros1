@@ -1,7 +1,14 @@
 import { useEffect, useState, type ReactNode } from "react";
 import type { Session, SupabaseClient } from "@supabase/supabase-js";
 import type { Database } from "@/integrations/supabase/types";
-import { APP_ORIGIN, getSpaceClient, SPACES, STATUS_LABEL, type SpaceKey } from "@/lib/spaces";
+import {
+  APP_ORIGIN,
+  consumeAuthRedirect,
+  getSpaceClient,
+  SPACES,
+  STATUS_LABEL,
+  type SpaceKey,
+} from "@/lib/spaces";
 import { MainNav } from "@/components/MainNav";
 import { PasswordField } from "@/components/PasswordField";
 import { PublicBackdrop } from "@/components/PublicBackdrop";
