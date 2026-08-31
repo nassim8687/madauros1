@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
-import { APP_ORIGIN, getSpaceClient, SPACES } from "@/lib/spaces";
+import { APP_ORIGIN, consumeAuthRedirect, getSpaceClient, SPACES } from "@/lib/spaces";
 import { translateError, Wordmark } from "@/components/SpaceAuth";
 import { MainNav } from "@/components/MainNav";
 import { PasswordField } from "@/components/PasswordField";
@@ -59,9 +59,11 @@ function StudentLogin() {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    client.auth.getSession().then(({ data }) => {
-      if (data.session) navigate({ to: "/talameed" });
-    });
+    consumeAuthRedirect(client).then(() =>
+      client.auth.getSession().then(({ data }) => {
+        if (data.session) navigate({ to: "/talameed" });
+      }),
+    );
   }, [client, navigate]);
 
   const submit = async (e: React.FormEvent) => {

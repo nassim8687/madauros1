@@ -29,6 +29,27 @@
       "when": 1788094166683,
       "tag": "0003_teacher_classes",
       "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "7",
+      "when": 1788195687998,
+      "tag": "0004_madauros_full_schema_tables",
+      "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "7",
+      "when": 1788195715055,
+      "tag": "0005_madauros_policies",
+      "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "7",
+      "when": 1788195739570,
+      "tag": "0006_madauros_storage_policies",
+      "breakpoints": true
     }
   ]
 }
