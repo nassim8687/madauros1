@@ -89,3 +89,19 @@ export const APP_ORIGIN =
   typeof window !== "undefined" && window.location?.origin
     ? window.location.origin
     : "https://madauros.vercel.app";
+
+/**
+ * Supabase email links (confirmation, invite) redirect back with the session
+ * tokens in the URL hash. Space clients run with detectSessionInUrl: false,
+ * so consume the hash explicitly before reading the session.
+ */
+export async function consumeAuthRedirect(client: SupabaseClient<Database>): Promise<void> {
+  if (typeof window === "undefined") return;
+  const hash = new URLSearchParams(window.location.hash.replace(/^#/, ""));
+  const accessToken = hash.get("access_token");
+  const refreshToken = hash.get("refresh_token");
+  if (accessToken && refreshToken) {
+    await client.auth.setSession({ access_token: accessToken, refresh_token: refreshToken });
+    window.history.replaceState(null, "", window.location.pathname + window.location.search);
+  }
+}
